@@ -37,4 +37,16 @@ class ItemRepository
   def find_all_by_merchant_id(value); find_all_by(:merchant_id, value.downcase) end
   def find_all_by_created_at(value); find_all_by(:created_at, value) end
   def find_all_by_updated_at(value); find_all_by(:updated_at, value) end
+
+  def find_merchant_for(id)
+    sales_engine.find_merchant_by_item(id)
+  end
+
+  def find_invoice_items_for(id)
+    sales_engine.find_invoice_items_by_item(id)
+  end
+
+  def inspect
+    "#<#{self.ItemRepository} #{@items.size} rows>"
+  end
 end

@@ -19,16 +19,12 @@ class Item
 		@repository	 = repository
 	end
 
-	def items
-		repository.find_items_from(id)
+	def invoice_items
+		repository.find_invoice_items_for(id)
 	end
 
-	def invoices
-		repository.find_items_from(id)
-	end
-
-	def merchants
-		repository.find_items_from(id)
+	def merchant
+		repository.find_merchant_for(id)
 	end
 
 end

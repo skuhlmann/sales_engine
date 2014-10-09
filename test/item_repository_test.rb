@@ -90,4 +90,16 @@ class ItemRepositoryTest < Minitest::Test
 		assert_equal 14, results.count
 		assert_equal "item itaque consequatur", results[13].name
 	end
+
+	def test_delegates_find_merchant_to_sales_engine
+		sales_engine.expect(:find_merchant_by_item, [], ["1"])
+		invoice_repository.find_merchant_for("1")
+		sales_engine.verify
+	end
+
+	def test_delegates_find_invoice_items_to_sales_engine
+		sales_engine.expect(:find_invoice_items_by_item, [], ["1"])
+		invoice_repository.find_invoice_items_for("1")
+		sales_engine.verify
+	end
 end

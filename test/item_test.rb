@@ -51,21 +51,15 @@ class ItemTest < Minitest::Test
 		assert item.repository
 	end
 
-	def test_it_delegates_items_to_repository
-		repository.expect(:find_items_from, [], ["1"])
-		item.items
-		repository.verify
-	end
-
-	def test_it_delegates_invoices_to_repositoy
-		repository.expect(:find_items_from, [], ["1"])
-		item.invoices
+	def test_it_delegates_invoice_items_to_repositoy
+		repository.expect(:find_invoice_items_for, [], ["1"])
+		item.invoice_items
 		repository.verify
 	end
 
 	def test_it_delegates_merchants_to_repositoy
-		repository.expect(:find_items_from, [], ["1"])
-		item.merchants
+		repository.expect(:find_merchant_for, [], ["1"])
+		item.merchant
 		repository.verify
 	end
 end
