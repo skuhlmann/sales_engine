@@ -5,7 +5,7 @@ class InvoiceItemRepository
 	attr_reader :invoice_items, :sales_engine
 
 	def initialize(file_path, sales_engine)
-		@invoice_items = InvoiceItemParser.new(file_path).all(self) 
+		@invoice_items = InvoiceItemParser.new(file_path).all(self)
 		@sales_engine  = sales_engine
 	end
 
@@ -41,13 +41,15 @@ class InvoiceItemRepository
 	def find_all_by_created_at(value); find_all_by(:created_at, value) end
 	def find_all_by_updated_at(value); find_all_by(:updated_at, value) end
 
-	def find_invoice_for(id)
-		sales_engine.find_invoice_by_invoice_item(id)
+	def find_invoice_for(invoice_id)
+		sales_engine.find_invoice_by_invoice_id(invoice_id)
 	end
-	
-	def find_item_for(id)
-		sales_engine.find_item_by_invoice_item(id)
+
+	def find_item_for(item_id)
+		sales_engine.find_item_by_invoice_item(item_id)
 	end
+
+
 
   def inspect
     "#<#{self.class} #{@invoice_items.size} rows>"
