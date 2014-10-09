@@ -39,4 +39,29 @@ class SalesEngine
 		invoice_repository.find_by_id(invoice_id)
 	end
 
+	def find_transactions_by_invoice(id)
+		transaction_repository.find_all_by_invoice_id(id)
+	end
+
+	def find_customer_by_invoice(customer_id)
+		customer_repository.find_by_id(customer_id)
+	end
+
+	def find_merchant_by_invoice(merchant_id)
+		merchant_repository.find_by_id(merchant_id)
+	end
+
+	def find_invoice_items_by_invoice(id)
+		invoice_item_repository.find_all_by_invoice_id(id)
+	end
+
+	def find_items_by_invoice(id)
+		invoice_items = find_invoice_items_by_invoice(id)
+		invoice_items.collect {|invoice_item| find_item_by_invoice_item(invoice_item.item_id)}
+	end
+
+	def find_invoice_by_transaction(invoice_id)
+		invoice_repository.find_by_id(invoice_id)
+	end
+
 end
