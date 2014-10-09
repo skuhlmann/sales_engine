@@ -5,7 +5,7 @@ class InvoiceItemRepository
 	attr_reader :invoice_items, :sales_engine
 
 	def initialize(file_path, sales_engine)
-		@invoice_items = InvoiceItemParser.new(file_path, self).all 
+		@invoice_items = InvoiceItemParser.new(file_path).all(self) 
 		@sales_engine  = sales_engine
 	end
 
