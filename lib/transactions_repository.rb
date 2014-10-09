@@ -4,8 +4,8 @@ require_relative 'transactions'
 class TransactionsRepository
   attr_reader :transactions, :sales_engine
 
-  def initialize(transactions, sales_engine)
-    @transactions = transactions
+  def initialize(file_path, sales_engine)
+    @transactions = TransactionsParser.new(file_path, self).all
     @sales_engine = sales_engine
   end
 

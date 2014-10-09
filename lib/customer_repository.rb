@@ -5,7 +5,7 @@ class CustomerRepository
 	attr_reader :customers, :sales_engine
 
 	def initialize(file_path, sales_engine)
-		@customers = CustomerParser.new(file_path, self)
+		@customers = CustomerParser.new(file_path, self).all
 		@sales_engine = sales_engine
 	end
 
@@ -14,7 +14,7 @@ class CustomerRepository
 	end
 
 	def random
-		customer.sample
+		customers.sample
 	end
 
 	def find_by(attribute, value)

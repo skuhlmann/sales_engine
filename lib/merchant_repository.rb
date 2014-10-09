@@ -4,8 +4,8 @@ require_relative 'merchants'
 class MerchantRepository
 	attr_reader :merchants, :sales_engine
 
-	def initialize(merchants, sales_engine)
-		@merchants    = merchants
+	def initialize(file_path, sales_engine)
+		@merchants    = MerchantsParser.new(file_path, self).all
 		@sales_engine = sales_engine
 	end
 
