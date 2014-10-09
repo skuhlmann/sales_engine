@@ -14,7 +14,7 @@ class InvoiceRepository
 	end
 
 	def random
-		invoices
+		invoices.sample
 	end
 
 	def find_by(attribute, value)

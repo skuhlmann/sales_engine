@@ -12,7 +12,7 @@ class SalesEngine
 							:invoice_item_repository,
 							:item_repository,
 							:merchant_repository,
-							:transactions_repository 
+							:transaction_repository 
 
 
 	def initialize(directory = "./data")
