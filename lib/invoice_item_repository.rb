@@ -4,8 +4,8 @@ require_relative 'invoice_item'
 class InvoiceItemRepository
 	attr_reader :invoice_items, :sales_engine
 
-	def initialize(invoice_items, sales_engine)
-		@invoice_items = invoice_items 
+	def initialize(file_path, sales_engine)
+		@invoice_items = InvoiceItemParser.new(file_path, self).all 
 		@sales_engine  = sales_engine
 	end
 

@@ -4,8 +4,8 @@ require_relative 'item'
 class ItemRepository
   attr_reader :items, :sales_engine
 
-  def initialize(items, sales_engine)
-    @items   = items
+  def initialize(file_path, sales_engine)
+    @items        = ItemParser.new(file_path, self).all 
     @sales_engine = sales_engine
   end
 
