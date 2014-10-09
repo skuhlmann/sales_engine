@@ -1,4 +1,5 @@
 require_relative 'invoice_item'
+require 'csv'
 
 class InvoiceItemParser
 	attr_reader :rows, :repository

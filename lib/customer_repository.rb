@@ -4,8 +4,8 @@ require_relative 'customer'
 class CustomerRepository
 	attr_reader :customers, :sales_engine
 
-	def initialize(customers, sales_engine)
-		@customers    = customers
+	def initialize(file_path, sales_engine)
+		@customers = CustomerParser.new(file_path, self)
 		@sales_engine = sales_engine
 	end
 

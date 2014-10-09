@@ -1,4 +1,5 @@
 require_relative 'merchants'
+require 'csv'
 
 class MerchantsParser
 	attr_reader :rows, :repository

@@ -1,4 +1,5 @@
 require_relative 'customer'
+require 'csv'
 
 class CustomerParser
 	attr_reader :rows, :repository

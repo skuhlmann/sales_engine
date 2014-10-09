@@ -1,4 +1,5 @@
 require_relative 'item'
+require 'csv'
 
 class ItemParser
 	attr_reader :rows, :repository
