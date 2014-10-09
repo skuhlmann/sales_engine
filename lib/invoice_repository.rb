@@ -7,7 +7,7 @@ class InvoiceRepository
 	end
 
 	def all
-		@invoices
+		invoices
 	end
 
 	def random

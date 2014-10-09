@@ -1,5 +1,4 @@
 class TransactionsParser
-
   attr_reader :rows, :repository
   
   def initialize(file_path, repository)
@@ -7,6 +6,6 @@ class TransactionsParser
   end
 
   def all
-    @rows.map {|row| Transactions.new(row, repository)}
+    rows.map {|row| Transactions.new(row, repository)}
   end
 end

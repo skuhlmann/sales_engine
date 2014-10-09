@@ -1,8 +1,7 @@
 require_relative 'test_helper'
 
 class TransactionsRepositoryTest < Minitest::Test
-
-attr_reader :transactions_repository, :repository, :sales_engine
+attr_reader :transactions_repository, :sales_engine
 
   def setup
     file_path = "./test/support/test_transactions.csv"
@@ -23,15 +22,13 @@ attr_reader :transactions_repository, :repository, :sales_engine
     assert_equal transactions_repository.transactions.count, results.count
   end
 
-  def test_returns_a_random_transactions
-    skip
+  def test_returns_a_random_transaction
     results = transactions_repository.random
 
     assert_equal 1, results.count
   end
 
   def test_finds_by_missing_value_returns_an_empty_array
-    skip
     results = transactions_repository.find_by_id("1000000")
 
     assert_empty results
@@ -61,16 +58,10 @@ attr_reader :transactions_repository, :repository, :sales_engine
     assert_equal "8", results.id
   end
 
-  def test_finds_by_credit_card_expiration_date
-    results = transactions_repository.find_by_credit_card_expiration_date(" ")
-
-    assert_equal "2", results.id
-  end
-
   def test_finds_by_result
     results = transactions_repository.find_by_result("success")
 
-    assert_equal "6", results.id
+    assert_equal "1", results.id
   end
 
   def test_finds_by_created_date
@@ -89,6 +80,11 @@ attr_reader :transactions_repository, :repository, :sales_engine
     results = transactions_repository.find_all_by_result("success")
 
     assert_equal 11, results.count
-    # assert_equal "success", results[11].result
+  end
+
+  def test_it_delegates_find_invoice_by_to_sales_engine
+    sales_engine.expect(:find_invoice_by_transaction, [], ["1"])
+    transactions_repository.find_invoice_for("1")
+    sales_engine.verify
   end
 end

@@ -1,7 +1,6 @@
 require_relative 'test_helper'
 
 class CustomerTest < Minitest::Test
-
 	attr_reader :customer, :repository
 
 	def setup

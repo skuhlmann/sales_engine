@@ -1,10 +1,17 @@
 class TransactionsRepository
-
   attr_reader :transactions, :sales_engine
 
   def initialize(transactions, sales_engine)
-    @transactions   = transactions
-    @results        = sales_engine
+    @transactions = transactions
+    @sales_engine = sales_engine
+  end
+
+  def all
+    transactions
+  end
+
+  def random
+    transactions.sample
   end
 
   def find_by(attribute, value)
@@ -31,11 +38,7 @@ class TransactionsRepository
   def find_all_by_created_at(value); find_all_by(:created_at, value) end
   def find_all_by_updated_at(value); find_all_by(:updated_at, value) end
 
-  def all
-    transactions
-  end
-
-  def random
-    transactions.sample
+  def find_invoice_for(id)
+    sales_engine.find_invoice_by_transaction(id)
   end
 end

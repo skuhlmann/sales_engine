@@ -4,7 +4,8 @@ class ParserTest < MiniTest::Test
 
 	def test_loads_an_item_csv
 		file_path = "./test/support/test_items.csv"
-		items = ItemParser.new(file_path).all
+		repository = Minitest::Mock.new
+		items = ItemParser.new(file_path, repository).all
 
 		assert_equal "1", items[0].id
 		assert_equal "item autem minima", items[1].name
@@ -17,7 +18,8 @@ class ParserTest < MiniTest::Test
 
 	def test_loads_an_invoice_csv
 		file_path = "./test/support/test_invoices.csv"
-		invoices = InvoiceParser.new(file_path).all
+		repository = Minitest::Mock.new
+		invoices = InvoiceParser.new(file_path, repository).all
 
 		assert_equal "6", invoices[5].id
 		assert_equal "1", invoices[1].customer_id
@@ -29,7 +31,8 @@ class ParserTest < MiniTest::Test
 
 	def test_loads_an_invoice_item_csv
 		file_path = "./test/support/test_invoice_items.csv"
-		invoice_items = InvoiceItemParser.new(file_path).all
+		repository = Minitest::Mock.new
+		invoice_items = InvoiceItemParser.new(file_path, repository).all
 
 		assert_equal "1", invoice_items[0].id
 		assert_equal "528", invoice_items[1].item_id
@@ -42,7 +45,8 @@ class ParserTest < MiniTest::Test
 
 	def test_loads_a_customer_csv
 		file_path = "./test/support/test_customers.csv"
-		customers = CustomerParser.new(file_path).all
+		repository = Minitest::Mock.new
+		customers = CustomerParser.new(file_path, repository).all
 
 		assert_equal "1", customers[0].id
 		assert_equal "joey", customers[0].first_name
@@ -53,7 +57,8 @@ class ParserTest < MiniTest::Test
 
 	def test_loads_a_merchant_csv
 		file_path = "./test/support/test_merchants.csv"
-		merchants = MerchantsParser.new(file_path).all
+		repository = Minitest::Mock.new
+		merchants = MerchantsParser.new(file_path, repository).all
 
 		assert_equal "1", merchants[0].id
 		assert_equal "schroeder-jerde", merchants[0].name
@@ -63,7 +68,8 @@ class ParserTest < MiniTest::Test
 
 	def test_loads_a_transaction_csv
 		file_path = "./test/support/test_transactions.csv"
-		transactions = TransactionsParser.new(file_path).all
+		repository = Minitest::Mock.new
+		transactions = TransactionsParser.new(file_path, repository).all
 
 		assert_equal "1", transactions[0].id
 		assert_equal "1", transactions[0].invoice_id

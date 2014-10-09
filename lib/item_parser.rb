@@ -1,5 +1,4 @@
 class ItemParser
-
 	attr_reader :rows, :repository
 
 	def initialize(file_path, repository)
@@ -7,6 +6,6 @@ class ItemParser
 	end
 
 	def all
-		@rows.map {|row| Item.new(row, repository)}
+		rows.map {|row| Item.new(row, repository)}
 	end
 end

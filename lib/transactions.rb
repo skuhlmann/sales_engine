@@ -1,5 +1,4 @@
 class Transactions
-
   attr_reader :id,
               :invoice_id,
               :credit_card_number,
@@ -19,7 +18,4 @@ class Transactions
     @updated_at                   = data[:updated_at].split(" ")[0]
     @repository                   = repository
   end
-
-  
-
 end

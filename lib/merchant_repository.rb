@@ -7,11 +7,11 @@ class MerchantRepository
 	end
 
 	def all
-		@merchants
+		merchants
 	end
 
 	def random
-		@merchant.sample
+		merchant.sample
 	end
 
 	def find_by(attribute, value)

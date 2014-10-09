@@ -1,5 +1,4 @@
 class Merchants
-
   attr_reader :id,
               :name,
               :created_at,
