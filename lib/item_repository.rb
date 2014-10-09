@@ -1,11 +1,14 @@
 require_relative 'item_parser'
 require_relative 'item'
+require 'bigdecimal'
+require 'bigdecimal/util'
+require 'time'
 
 class ItemRepository
   attr_reader :items, :sales_engine
 
   def initialize(file_path, sales_engine)
-    @items        = ItemParser.new(file_path, self).all 
+    @items        = ItemParser.new(file_path, self).all
     @sales_engine = sales_engine
   end
 
@@ -26,18 +29,18 @@ class ItemRepository
   end
 
   def find_by_id(value); find_by(:id, value) end
-  def find_by_name(value); find_by(:name, value.downcase) end
-  def find_by_description(value); find_by(:description, value.downcase) end
-  def find_by_unit_price(value); find_by(:unit_price, value.downcase) end
-  def find_by_merchant_id(value); find_by(:merchant_id, value.downcase) end
+  def find_by_name(value); find_by(:name, value) end
+  def find_by_description(value); find_by(:description, value) end
+  def find_by_unit_price(value); find_by(:unit_price, value.to_d) end
+  def find_by_merchant_id(value); find_by(:merchant_id, value) end
   def find_by_created_at(value); find_by(:created_at, value) end
   def find_by_updated_at(value); find_by(:updated_at, value) end
 
   def find_all_by_id(value); find_all_by(:id, value) end
-  def find_all_by_name(value); find_all_by(:name, value.downcase) end
-  def find_all_by_description(value); find_all_by(:description, value.downcase) end
-  def find_all_by_unit_price(value); find_all_by(:unit_price, value.downcase) end
-  def find_all_by_merchant_id(value); find_all_by(:merchant_id, value.downcase) end
+  def find_all_by_name(value); find_all_by(:name, value) end
+  def find_all_by_description(value); find_all_by(:description, value) end
+  def find_all_by_unit_price(value); find_all_by(:unit_price, value) end
+  def find_all_by_merchant_id(value); find_all_by(:merchant_id, value) end
   def find_all_by_created_at(value); find_all_by(:created_at, value) end
   def find_all_by_updated_at(value); find_all_by(:updated_at, value) end
 
