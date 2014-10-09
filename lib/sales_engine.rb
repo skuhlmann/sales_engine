@@ -14,7 +14,6 @@ class SalesEngine
 							:merchant_repository,
 							:transaction_repository 
 
-
 	def initialize(directory = "./data")
 		@directory = directory
 	end

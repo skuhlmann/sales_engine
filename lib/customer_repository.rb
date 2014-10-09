@@ -26,8 +26,8 @@ class CustomerRepository
 	end
 
 	def find_by_id(value); find_by(:id, value) end
-	def find_by_first_name(value); find_by(:first_name, value.downcase) end
-	def find_by_last_name(value); find_by(:last_name, value.downcase) end
+	def find_by_first_name(value); find_by(:first_name, value) end
+	def find_by_last_name(value); find_by(:last_name, value) end
 	def find_by_created_at(value); find_by(:created_at, value) end
 	def find_by_updated_at(value); find_by(:updated_at, value) end
 
