@@ -1,3 +1,5 @@
+require_relative 'customer'
+
 class CustomerParser
 	attr_reader :rows, :repository
 

@@ -1,3 +1,6 @@
+require_relative 'merchants_parser'
+require_relative 'merchants'
+
 class MerchantRepository
 	attr_reader :merchants, :sales_engine
 

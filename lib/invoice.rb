@@ -1,3 +1,6 @@
+require_relative 'invoice_parser'
+require_relative 'invoice'
+
 class Invoice
 	attr_reader :id,
 					  	:customer_id,

@@ -1,3 +1,6 @@
+require_relative 'invoice_item_parser'
+require_relative 'invoice_item'
+
 class InvoiceItemRepository
 	attr_reader :invoice_items, :sales_engine
 

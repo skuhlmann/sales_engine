@@ -1,3 +1,5 @@
+require_relative 'merchants'
+
 class MerchantsParser
 	attr_reader :rows, :repository
 

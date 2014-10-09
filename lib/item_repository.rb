@@ -1,3 +1,6 @@
+require_relative 'item_parser'
+require_relative 'item'
+
 class ItemRepository
   attr_reader :items, :sales_engine
 

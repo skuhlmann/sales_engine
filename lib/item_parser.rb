@@ -1,3 +1,5 @@
+require_relative 'item'
+
 class ItemParser
 	attr_reader :rows, :repository
 

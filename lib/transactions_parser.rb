@@ -1,3 +1,5 @@
+require_relative 'transactions'
+
 class TransactionsParser
   attr_reader :rows, :repository
   

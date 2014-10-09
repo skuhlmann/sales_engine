@@ -1,4 +1,6 @@
-file_pattern = File.expand_path "../../lib/*.rb" , __FILE__
-
-Dir[file_pattern].each { |file| require file }
-
+require_relative 'customer_repository'
+require_relative 'invoice_repository'
+require_relative 'invoice_item_repository'
+require_relative 'item_repository'
+require_relative 'merchant_repository'
+require_relative 'transactions_repository'
