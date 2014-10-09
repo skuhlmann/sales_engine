@@ -41,8 +41,8 @@ class TransactionsRepository
   def find_all_by_created_at(value); find_all_by(:created_at, value) end
   def find_all_by_updated_at(value); find_all_by(:updated_at, value) end
 
-  def find_invoice_for(id)
-    sales_engine.find_invoice_by_transaction(id)
+  def find_invoice_for(invoice_id)
+    sales_engine.find_invoice_by_transaction(invoice_id)
   end
 
   def inspect
