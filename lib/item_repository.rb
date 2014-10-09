@@ -3,7 +3,7 @@ class ItemRepository
 
   def initialize(items, sales_engine)
     @items   = items
-    @results = sales_engine
+    @sales_engine = sales_engine
   end
 
   def all
