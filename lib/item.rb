@@ -29,7 +29,7 @@ class Item
 	end
 
 	def merchant
-		repository.find_merchant_for(id)
+		repository.find_merchant_for(merchant_id)
 	end
 
 end
