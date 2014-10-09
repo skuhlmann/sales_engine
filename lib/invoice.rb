@@ -11,8 +11,8 @@ class Invoice
 						  :repository
 
 	def initialize(data, repository)
-		@id          = data[:id]
-		@customer_id = data[:customer_id]
+		@id          = data[:id].to_i
+		@customer_id = data[:customer_id].to_i
 		@merchant_id = data[:merchant_id]
 		@status      = data[:status].downcase
 		@created_at  = data[:created_at].split(" ")[0]

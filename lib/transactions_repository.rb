@@ -5,7 +5,7 @@ class TransactionsRepository
   attr_reader :transactions, :sales_engine
 
   def initialize(file_path, sales_engine)
-    @transactions = TransactionsParser.new(file_path, self).all
+    @transactions = TransactionsParser.new(file_path).all(self)
     @sales_engine = sales_engine
   end
 

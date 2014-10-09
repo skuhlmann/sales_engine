@@ -26,4 +26,8 @@ class SalesEngine
 		@merchant_repository ||= MerchantRepository.new("#{directory}/merchants.csv", self)
 		@transaction_repository ||= TransactionsRepository.new("#{directory}/transactions.csv", self)
 	end
+
+	def find_invoices_by_customer(id)
+		invoice_repository.find_all_by_customer_id(id)
+	end
 end

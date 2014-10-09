@@ -5,7 +5,7 @@ class MerchantRepository
 	attr_reader :merchants, :sales_engine
 
 	def initialize(file_path, sales_engine)
-		@merchants    = MerchantsParser.new(file_path, self).all
+		@merchants    = MerchantsParser.new(file_path).all(self)
 		@sales_engine = sales_engine
 	end
 

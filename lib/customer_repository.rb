@@ -5,7 +5,7 @@ class CustomerRepository
 	attr_reader :customers, :sales_engine
 
 	def initialize(file_path, sales_engine)
-		@customers = CustomerParser.new(file_path, self).all
+		@customers = CustomerParser.new(file_path).all(self)
 		@sales_engine = sales_engine
 	end
 
@@ -17,15 +17,9 @@ class CustomerRepository
 		customers.sample
 	end
 
-	def find_by(attribute, value)
-		customers.find {|customer| customer.send(attribute.to_sym) == value}
+	def find_by_id(value) 
+		customers.find {|customer| customer.id == value}
 	end
-
-	def find_all_by(attribute, value)
-		customers.find_all {|customer| customer.send(attribute.to_sym) == value}
-	end
-
-	def find_by_id(value); find_by(:id, value) end
 
 	def find_by_first_name(value)
 		customers.find {|customer| customer.first_name.downcase == value.downcase }
@@ -35,18 +29,33 @@ class CustomerRepository
 		customers.find {|customer| customer.last_name.downcase == value.downcase }
 	end
 
-	def find_by_created_at(value); find_by(:created_at, value) end
-	def find_by_updated_at(value); find_by(:updated_at, value) end
+	def find_by_created_at(value)
+		customers.find {|customer| customer.created_at == value}
+	end
 
-	def find_all_by_id(value); find_all_by(:id, value) end
+	def find_by_updated_at(value)
+		customers.find {|customer| customer.created_at == value}
+	end
+
+	def find_all_by_id(value)
+		customers.find_all {|customer| customer.id == value}
+	end
 
 	def find_all_by_first_name(value)
 		customers.find_all {|customer| customer.first_name.downcase == value.downcase}
 	end
 
-	def find_all_by_last_name(value); find_all_by(:last_name, value.downcase) end
-	def find_all_by_created_at(value); find_all_by(:created_at, value) end
-	def find_all_by_updated_at(value); find_all_by(:updated_at, value) end
+	def find_all_by_last_name(value)
+		customers.find_all {|customer| customer.last_name.downcase == value.downcase}
+	end
+
+	def find_all_by_created_at(value)
+		customers.find_all {|customer| customer.created_at == value}
+	end
+
+	def find_all_by_updated_at(value)
+		customers.find_all {|customer| customer.created_at == value}
+	end
 
 	def find_invoices_for(id)
 		sales_engine.find_invoices_by_customer(id)

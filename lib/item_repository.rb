@@ -8,7 +8,7 @@ class ItemRepository
   attr_reader :items, :sales_engine
 
   def initialize(file_path, sales_engine)
-    @items        = ItemParser.new(file_path, self).all
+    @items        = ItemParser.new(file_path).all(self)
     @sales_engine = sales_engine
   end
 
