@@ -4,7 +4,7 @@ class CustomerRepositoryTest < Minitest::Test
 	attr_reader :customer_repository, :sales_engine
 
 	def setup
-		file_path = "./test/support/test_customers.csv"
+		file_path = "./test/support/customers.csv"
 		@sales_engine = Minitest::Mock.new
 		repository = Minitest::Mock.new
 		@customer_repository = CustomerRepository.new(file_path, sales_engine)

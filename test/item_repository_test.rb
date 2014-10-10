@@ -4,14 +4,14 @@ class ItemRepositoryTest < Minitest::Test
 	attr_reader :item_repository, :repository, :sales_engine
 
 	def setup
-		file_path = "./test/support/test_items.csv"
+		file_path = "./test/support/items.csv"
 		@sales_engine = Minitest::Mock.new
 		repository = Minitest::Mock.new
 		@item_repository = ItemRepository.new(file_path, sales_engine)
 	end
 
 	def test_instantiates_with_items_array
-		assert_equal 14,item_repository.items.count
+		assert_equal 15,item_repository.items.count
 	end
 
 	def test_returns_all_items
@@ -81,7 +81,7 @@ class ItemRepositoryTest < Minitest::Test
 	def test_finds_all_by_merchant_id
 		results = item_repository.find_all_by_merchant_id(1)
 
-		assert_equal 14, results.count
+		assert_equal 15, results.count
 		assert_equal "Item Itaque Consequatur", results[13].name
 	end
 

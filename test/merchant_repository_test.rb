@@ -4,7 +4,7 @@ class MerchantRepositoryTest < Minitest::Test
 	attr_reader :merchant_repository, :sales_engine
 
 	def setup
-		file_path = "./test/support/test_merchants.csv"
+		file_path = "./test/support/merchants.csv"
 		@sales_engine = Minitest::Mock.new
 		repository = Minitest::Mock.new
 		@merchant_repository = MerchantRepository.new(file_path, sales_engine)
@@ -62,8 +62,7 @@ class MerchantRepositoryTest < Minitest::Test
 	end
 
 	def test_finds_all_by_missing_value_returns_an_empty_array
-		skip
-		assert_empty merchant_repository.find_all_by_id(1000000)
+		results = merchant_repository.find_all_by_id(1000000)
 
 		assert_empty results
 	end
