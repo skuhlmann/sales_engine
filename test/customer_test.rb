@@ -19,24 +19,24 @@ class CustomerTest < Minitest::Test
 	end
 
 	def test_customer_has_an_id
-		assert_equal "1", customer.id
-	end	
+		assert_equal 1, customer.id
+	end
 
 	def test_customer_has_a_first_name
-		assert_equal "joey", customer.first_name
+		assert_equal "Joey", customer.first_name
 	end
-	
+
 	def test_customer_has_a_last_name
-		assert_equal "ondricka", customer.last_name
+		assert_equal "Ondricka", customer.last_name
 	end
-	
+
 	def test_customer_has_metadata
 		assert_equal "2012-03-27", customer.created_at
 		assert_equal "2012-03-27", customer.updated_at
 	end
 
 	def test_delegates_invoices_to_repository
-		repository.expect(:find_invoices_for, [], ["1"])
+		repository.expect(:find_invoices_for, [], [1])
 		customer.invoices
 		repository.verify
 	end
