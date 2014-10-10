@@ -23,23 +23,23 @@ class ItemTest < Minitest::Test
 	end
 
 	def test_it_has_an_id
-		assert_equal "1", item.id
+		assert_equal 1, item.id
 	end
 
 	def test_an_item_has_a_name
-		assert_equal "item qui esse", item.name
+		assert_equal "Item Qui Esse", item.name
 	end
 
 	def test_an_item_has_a_description
-		assert_equal "nihil autem sit odio inventore deleniti. est laudantium ratione distinctio laborum. minus voluptatem nesciunt assumenda dicta voluptatum porro." , item.description
+		assert_equal "Nihil autem sit odio inventore deleniti. Est laudantium ratione distinctio laborum. Minus voluptatem nesciunt assumenda dicta voluptatum porro." , item.description
 	end
 
 	def test_an_item_has_a_unit_price
-		assert_equal "75107", item.unit_price
+		assert_equal BigDecimal.new("75107")/100, item.unit_price
 	end
 
 	def test_an_item_has_a_merchant_id
-		assert_equal "1", item.merchant_id
+		assert_equal 1, item.merchant_id
 	end
 
 	def test_an_item_has_meta_data
@@ -52,13 +52,13 @@ class ItemTest < Minitest::Test
 	end
 
 	def test_it_delegates_invoice_items_to_repositoy
-		repository.expect(:find_invoice_items_for, [], ["1"])
+		repository.expect(:find_invoice_items_for, [], [1])
 		item.invoice_items
 		repository.verify
 	end
 
 	def test_it_delegates_merchants_to_repositoy
-		repository.expect(:find_merchant_for, [], ["1"])
+		repository.expect(:find_merchant_for, [], [1])
 		item.merchant
 		repository.verify
 	end
