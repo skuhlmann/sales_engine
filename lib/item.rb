@@ -19,8 +19,8 @@ class Item
 		@description = data[:description]
 		@unit_price  = data[:unit_price].to_d/100
 		@merchant_id = data[:merchant_id].to_i
-		@created_at  = data[:created_at]
-		@updated_at  = data[:updated_at]
+		@created_at  = data[:created_at].split(" ")[0]
+		@updated_at  = data[:updated_at].split(" ")[0]
 		@repository	 = repository
 	end
 
