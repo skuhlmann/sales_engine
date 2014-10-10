@@ -21,11 +21,11 @@ class TransactionsTest < Minitest::Test
   end
 
   def test_it_has_an_id
-    assert_equal "1", transaction.id
+    assert_equal 1, transaction.id
   end
 
   def test_it_has_an_invoice_id
-    assert_equal "1", transaction.invoice_id
+    assert_equal 1, transaction.invoice_id
   end
 
   def test_it_has_a_credit_card_number
@@ -46,7 +46,7 @@ class TransactionsTest < Minitest::Test
   end
 
   def it_delegates_invoice_to_repository
-    repository.expect(:find_invoice_by_transaction, [], ["1"])
+    repository.expect(:find_invoice_by_transaction, [], [1])
     transation.invoice 
     repository.verify
   end

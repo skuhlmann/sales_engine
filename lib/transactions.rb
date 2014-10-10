@@ -14,8 +14,8 @@ class Transactions
     @credit_card_number           = data[:credit_card_number]
     @credit_card_expiration_date  = data[:credit_card_expiration_date]
     @result                       = data[:result]
-    @created_at                   = data[:created_at]
-    @updated_at                   = data[:updated_at]
+    @created_at                   = data[:created_at].split(" ")[0]
+    @updated_at                   = data[:updated_at].split(" ")[0]
     @repository                   = repository
   end
 
