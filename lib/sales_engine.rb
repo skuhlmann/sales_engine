@@ -19,12 +19,12 @@ class SalesEngine
 	end
 
 	def startup
-		@customer_repository ||= CustomerRepository.new("#{directory}/customers.csv", self)
-		@invoice_repository ||= InvoiceRepository.new("#{directory}/invoices.csv", self)
-		@invoice_item_repository ||= InvoiceItemRepository.new("#{directory}/invoice_items.csv", self)
-		@item_repository ||= ItemRepository.new("#{directory}/items.csv", self)
-		@merchant_repository ||= MerchantRepository.new("#{directory}/merchants.csv", self)
-		@transaction_repository ||= TransactionsRepository.new("#{directory}/transactions.csv", self)
+		@customer_repository     ||= CustomerRepository.new(directory + "/customers.csv", self)
+		@invoice_repository      ||= InvoiceRepository.new(directory + "/invoices.csv", self)
+		@invoice_item_repository ||= InvoiceItemRepository.new(directory + "/invoice_items.csv", self)
+		@item_repository         ||= ItemRepository.new(directory + "/items.csv", self)
+		@merchant_repository     ||= MerchantRepository.new(directory + "/merchants.csv", self)
+		@transaction_repository  ||= TransactionsRepository.new(directory + "/transactions.csv", self)
 	end
 
 	def find_invoices_by_customer(id)

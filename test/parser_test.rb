@@ -3,7 +3,7 @@ require_relative 'test_helper'
 class ParserTest < MiniTest::Test
 
 	def test_loads_an_item_csv
-		file_path = "./test/support/test_items.csv"
+		file_path = "./test/support/items.csv"
 		repository = Minitest::Mock.new
 		items = ItemParser.new(file_path).all(repository)
 
@@ -17,7 +17,7 @@ class ParserTest < MiniTest::Test
 	end
 
 	def test_loads_an_invoice_csv
-		file_path = "./test/support/test_invoices.csv"
+		file_path = "./test/support/invoices.csv"
 		repository = Minitest::Mock.new
 		invoices = InvoiceParser.new(file_path).all(repository)
 
@@ -30,7 +30,7 @@ class ParserTest < MiniTest::Test
 	end
 
 	def test_loads_an_invoice_item_csv
-		file_path = "./test/support/test_invoice_items.csv"
+		file_path = "./test/support/invoice_items.csv"
 		repository = Minitest::Mock.new
 		invoice_items = InvoiceItemParser.new(file_path).all(repository)
 
@@ -44,7 +44,7 @@ class ParserTest < MiniTest::Test
 	end
 
 	def test_loads_a_customer_csv
-		file_path = "./test/support/test_customers.csv"
+		file_path = "./test/support/customers.csv"
 		repository = Minitest::Mock.new
 		customers = CustomerParser.new(file_path).all(repository)
 
@@ -56,7 +56,7 @@ class ParserTest < MiniTest::Test
 	end
 
 	def test_loads_a_merchant_csv
-		file_path = "./test/support/test_merchants.csv"
+		file_path = "./test/support/merchants.csv"
 		repository = Minitest::Mock.new
 		merchants = MerchantsParser.new(file_path).all(repository)
 
@@ -67,7 +67,7 @@ class ParserTest < MiniTest::Test
 	end
 
 	def test_loads_a_transaction_csv
-		file_path = "./test/support/test_transactions.csv"
+		file_path = "./test/support/transactions.csv"
 		repository = Minitest::Mock.new
 		transactions = TransactionsParser.new(file_path).all(repository)
 

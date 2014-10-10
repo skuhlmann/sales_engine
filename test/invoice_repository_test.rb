@@ -4,7 +4,7 @@ class InvoiceRepositoryTest < Minitest::Test
 	attr_reader :invoice_repository, :sales_engine
 
 	def setup
-		file_path = "./test/support/test_invoices.csv"
+		file_path = "./test/support/invoices.csv"
 		@sales_engine = Minitest::Mock.new
 		repository = Minitest::Mock.new
 		@invoice_repository = InvoiceRepository.new(file_path, sales_engine)
