@@ -1,4 +1,5 @@
 require_relative 'test_helper'
+require_relative '../lib/transactions'
 
 class CustomerTest < Minitest::Test
 	attr_reader :customer, :repository
@@ -40,4 +41,14 @@ class CustomerTest < Minitest::Test
 		customer.invoices
 		repository.verify
 	end
+
+	def test_customer_has_transactions
+		transaction1 = Transactions.new({:id => 1}, nil)
+		transaction2 = Transactions.new({:id => 2}, nil)
+		repository.expect(:find_transactions_for, [transaction1, transaction2], [1])
+		assert_equal [1,2], customer.transactions.map(&:id)
+		repository.verify
+	end
+
+
 end
