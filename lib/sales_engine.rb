@@ -80,4 +80,9 @@ class SalesEngine
 		invoice_repository.find_all_by_merchant_id(id)
 	end
 
+	def find_transactions_by_customer(id)
+		customer_invoices = find_invoices_by_customer(id)
+		customer_invoices.map(&:id)
+	end
+
 end

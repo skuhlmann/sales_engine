@@ -17,7 +17,7 @@ class CustomerRepository
 		customers.sample
 	end
 
-	def find_by_id(value) 
+	def find_by_id(value)
 		customers.find {|customer| customer.id == value}
 	end
 
@@ -59,6 +59,10 @@ class CustomerRepository
 
 	def find_invoices_for(id)
 		sales_engine.find_invoices_by_customer(id)
+	end
+
+	def find_transactions_for(id)
+		sales_engine.find_transactions_by_customer(id)
 	end
 
   def inspect
