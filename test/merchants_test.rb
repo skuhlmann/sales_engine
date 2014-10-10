@@ -19,11 +19,11 @@ class MerchantsTest < Minitest::Test
   end
 
   def test_it_has_an_id
-    assert_equal "1", merchant.id
+    assert_equal 1, merchant.id
   end
 
   def test_it_has_a_name
-    assert_equal "schroeder-jerde", merchant.name
+    assert_equal "Schroeder-Jerde", merchant.name
   end
 
   def test_it_has_meta_data
@@ -32,13 +32,13 @@ class MerchantsTest < Minitest::Test
   end
 
   def test_it_delegates_items_to_repository
-    repository.expect(:find_items_for, [], ["1"])
+    repository.expect(:find_items_for, [], [1])
     merchant.items
     repository.verify
   end
 
-  def test_it_delagates_invoices_to_repository
-    repository.expect(:find_invoices_for, [], ["1"])
+  def test_it_delegates_invoices_to_repository
+    repository.expect(:find_invoices_for, [], [1])
     merchant.invoices
     repository.verify
   end

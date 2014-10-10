@@ -21,6 +21,3 @@ class Merchants
     repository.find_invoices_for(id)
   end
 end
-
-
-#invoices returns a collection of Invoice instances associated with that merchant from their known orders

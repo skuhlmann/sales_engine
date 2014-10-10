@@ -30,7 +30,6 @@ class ItemRepositoryTest < Minitest::Test
 		refute results.count == 100
 	end
 
-
 	def test_finds_all_by_missing_value_returns_an_empty_array
 		results = item_repository.find_all_by_id(1000000)
 
@@ -87,14 +86,14 @@ class ItemRepositoryTest < Minitest::Test
 	end
 
 	def test_delegates_find_merchant_to_sales_engine
-		sales_engine.expect(:find_merchant_by_item, [], ["1"])
-		item_repository.find_merchant_for("1")
+		sales_engine.expect(:find_merchant_by_item, [], [1])
+		item_repository.find_merchant_for(1)
 		sales_engine.verify
 	end
 
 	def test_delegates_find_invoice_items_to_sales_engine
-		sales_engine.expect(:find_invoice_items_by_item, [], ["1"])
-		item_repository.find_invoice_items_for("1")
+		sales_engine.expect(:find_invoice_items_by_item, [], [1])
+		item_repository.find_invoice_items_for(1)
 		sales_engine.verify
 	end
 end
