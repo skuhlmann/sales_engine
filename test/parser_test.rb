@@ -38,7 +38,7 @@ class ParserTest < MiniTest::Test
 		assert_equal 528, invoice_items[1].item_id
 		assert_equal 1, invoice_items[2].invoice_id
 		assert_equal 3, invoice_items[3].quantity
-		assert_equal "79140", invoice_items[4].unit_price
+		assert_equal BigDecimal.new("79140")/100, invoice_items[4].unit_price
 		assert_equal "2012-03-27", invoice_items[5].created_at
 		assert_equal "2012-03-27", invoice_items[6].updated_at
 	end
