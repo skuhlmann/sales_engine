@@ -38,8 +38,7 @@ class Merchants
   end
 
   def favorite_customer
-    customer_transactions = invoices.map { |invoices| invoices.transactions }.flatten
-    successful_transactions = customer_transactions.select { |transaction| transaction.result == 'success' }
+    
   end
 
 end
