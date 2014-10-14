@@ -27,4 +27,8 @@ class InvoiceItem
 		repository.find_item_for(item_id)
 	end
 
+	def is_successful?
+		repository.has_successful_transaction?(invoice_id)
+	end
+
 end

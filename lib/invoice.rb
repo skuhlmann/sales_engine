@@ -44,7 +44,8 @@ class Invoice
 		repository.find_items_for(id)
 	end
 
-	def successful_invoices
-		repository.find_successfl_transactions_for(id)
+	def is_successful?
+		repository.has_successful_transaction?(id)
 	end
+
 end

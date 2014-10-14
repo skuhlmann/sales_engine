@@ -93,6 +93,14 @@ class SalesEngine
 		customer_invoices = find_invoices_by_customer(id)
 	end
 
+	def invoice_has_successful_transaction?(id)
+		transaction_reposoitory.find_all_by_invoice_id(id).any? {|transaction| transaction.result == 'success'}
+	end
+
+	def invoice_item_has_successful_transaction?(invoice_id)
+		transaction_repository.find_all_by_invoice_id(invoice_id).any? {|transaction| transaction.result == 'success'}
+	end
+
 	def find_all_invoice_items_by_quantity(x)
 		invoice_items_grouped = invoice_item_repository.all.group_by {|invoice_item| invoice_item.item_id}
 		hash = Hash.new
