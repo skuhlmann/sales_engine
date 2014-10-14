@@ -41,8 +41,8 @@ class TransactionsTest < Minitest::Test
   end
 
   def test_an_item_has_meta_data
-    assert_equal "2012-03-27", transaction.created_at
-    assert_equal "2012-03-27", transaction.updated_at
+    assert_equal Date.parse("2012-03-27 14:54:09 UTC"), transaction.created_at
+    assert_equal Date.parse("2012-03-27 14:54:09 UTC"), transaction.updated_at
   end
 
   def it_delegates_invoice_to_repository

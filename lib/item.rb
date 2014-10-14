@@ -19,8 +19,8 @@ class Item
 		@description = data[:description]
 		@unit_price  = data[:unit_price].to_d/100
 		@merchant_id = data[:merchant_id].to_i
-		@created_at  = data[:created_at].split(" ")[0]
-		@updated_at  = data[:updated_at].split(" ")[0]
+		@created_at  = Date.parse(data[:created_at])
+		@updated_at  = Date.parse(data[:updated_at])
 		@repository	 = repository
 	end
 
@@ -30,6 +30,15 @@ class Item
 
 	def merchant
 		repository.find_merchant_for(merchant_id)
+	end
+
+	def best_day
+		invoices = invoice_items.group_by {|invoice_item| invoice_item.invoice.created_at}
+		hash = Hash.new
+		invoices.each do |date, invoice_items| 
+			hash[date] = invoice_items.reduce(0) {|sum, invoice_item| sum + invoice_item.quantity}
+		end
+		best_day = hash.max_by { |date, total_quantity| total_quantity }[0]
 	end
 
 end

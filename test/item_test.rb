@@ -43,8 +43,8 @@ class ItemTest < Minitest::Test
 	end
 
 	def test_an_item_has_meta_data
-		assert_equal "2012-03-27", item.created_at
-		assert_equal "2012-03-27", item.updated_at
+		assert_equal Date.parse("2012-03-27 14:53:59 UTC"), item.created_at
+		assert_equal Date.parse("2012-03-27 14:53:59 UTC"), item.updated_at
 	end
 
 	def test_it_has_a_repository
@@ -62,4 +62,6 @@ class ItemTest < Minitest::Test
 		item.merchant
 		repository.verify
 	end
+
+
 end

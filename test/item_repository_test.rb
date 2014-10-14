@@ -67,13 +67,13 @@ class ItemRepositoryTest < Minitest::Test
 	end
 
 	def test_finds_by_created_date
-		results = item_repository.find_by_created_at("2012-03-27")
+		results = item_repository.find_by_created_at(Date.parse("2012-03-27"))
 
 		assert_equal 1, results.id
 	end
 
 	def test_finds_by_updated_at
-		results = item_repository.find_by_updated_at("2012-03-27")
+		results = item_repository.find_by_updated_at(Date.parse("2012-03-27"))
 
 		assert_equal 1, results.id
 	end
@@ -96,4 +96,5 @@ class ItemRepositoryTest < Minitest::Test
 		item_repository.find_invoice_items_for(1)
 		sales_engine.verify
 	end
+
 end

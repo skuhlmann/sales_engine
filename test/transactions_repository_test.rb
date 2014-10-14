@@ -61,13 +61,13 @@ attr_reader :transactions_repository, :sales_engine
   end
 
   def test_finds_by_created_date
-    results = transactions_repository.find_by_created_at("2012-03-27")
+    results = transactions_repository.find_by_created_at(Date.parse("2012-03-27"))
 
     assert_equal 1, results.id
   end
 
   def test_finds_by_updated_at
-    results = transactions_repository.find_by_updated_at("2012-03-27")
+    results = transactions_repository.find_by_updated_at(Date.parse("2012-03-27"))
 
     assert_equal 1, results.id
   end

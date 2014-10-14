@@ -14,8 +14,8 @@ class InvoiceItem
 		@invoice_id = data[:invoice_id].to_i
 		@quantity   = data[:quantity].to_i
 		@unit_price = data[:unit_price].to_d/100
-		@created_at = data[:created_at].split(" ")[0]
-		@updated_at = data[:updated_at].split(" ")[0]
+		@created_at = Date.parse(data[:created_at])
+		@updated_at = Date.parse(data[:updated_at])
 		@repository = repository
 	end
 
