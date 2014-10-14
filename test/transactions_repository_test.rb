@@ -4,7 +4,7 @@ class TransactionsRepositoryTest < Minitest::Test
 attr_reader :transactions_repository, :sales_engine
 
   def setup
-    file_path = "./test/support/test_transactions.csv"
+    file_path = "./test/support/transactions.csv"
     @sales_engine = Minitest::Mock.new
     repository = Minitest::Mock.new
     @transactions_repository = TransactionsRepository.new(file_path, sales_engine)
@@ -61,13 +61,13 @@ attr_reader :transactions_repository, :sales_engine
   end
 
   def test_finds_by_created_date
-    results = transactions_repository.find_by_created_at("2012-03-27")
+    results = transactions_repository.find_by_created_at(Date.parse("2012-03-27"))
 
     assert_equal 1, results.id
   end
 
   def test_finds_by_updated_at
-    results = transactions_repository.find_by_updated_at("2012-03-27")
+    results = transactions_repository.find_by_updated_at(Date.parse("2012-03-27"))
 
     assert_equal 1, results.id
   end

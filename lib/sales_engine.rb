@@ -19,12 +19,12 @@ class SalesEngine
 	end
 
 	def startup
-		@customer_repository ||= CustomerRepository.new("#{directory}/customers.csv", self)
-		@invoice_repository ||= InvoiceRepository.new("#{directory}/invoices.csv", self)
-		@invoice_item_repository ||= InvoiceItemRepository.new("#{directory}/invoice_items.csv", self)
-		@item_repository ||= ItemRepository.new("#{directory}/items.csv", self)
-		@merchant_repository ||= MerchantRepository.new("#{directory}/merchants.csv", self)
-		@transaction_repository ||= TransactionsRepository.new("#{directory}/transactions.csv", self)
+		@customer_repository     ||= CustomerRepository.new(directory + "/customers.csv", self)
+		@invoice_repository      ||= InvoiceRepository.new(directory + "/invoices.csv", self)
+		@invoice_item_repository ||= InvoiceItemRepository.new(directory + "/invoice_items.csv", self)
+		@item_repository         ||= ItemRepository.new(directory + "/items.csv", self)
+		@merchant_repository     ||= MerchantRepository.new(directory + "/merchants.csv", self)
+		@transaction_repository  ||= TransactionsRepository.new(directory + "/transactions.csv", self)
 	end
 
 	def find_invoices_by_customer(id)
@@ -86,6 +86,16 @@ class SalesEngine
 
 	def find_merchants_by_customer(id)
 		customer_invoices = find_invoices_by_customer(id)
+	end
+
+	def find_all_invoice_items_by_quantity(x)
+		invoice_items_grouped = invoice_item_repository.all.group_by {|invoice_item| invoice_item.item_id}
+		hash = Hash.new
+		invoice_items_grouped.each do |item_id, invoice_items|
+			hash[item_id] = invoice_items.reduce(0) {|sum, invoice_item| sum + invoice_item.quantity}
+		end
+		most_quantity = hash.sort_by {|item_id, total_quantity| total_quantity}.reverse.take(x)
+		this = most_quantity.map {|element| item_repository.find_by_id(element[0])}
 	end
 
 end

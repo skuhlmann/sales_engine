@@ -8,8 +8,8 @@ class Merchants
   def initialize(data, repository)
     @id         = data[:id].to_i
     @name       = data[:name]
-    @created_at = data[:created_at]
-    @updated_at = data[:created_at]
+    @created_at = Date.parse(data[:created_at])
+    @updated_at = Date.parse(data[:created_at])
     @repository = repository
   end
 
@@ -19,5 +19,14 @@ class Merchants
 
   def invoices
     repository.find_invoices_for(id)
+  end
+
+  def revenue
+    merchant_invoices = invoices
+    merchant_transactions = merchant_invoices.map {|invoice| invoice.transactions}.flatten
+    successful_transactions = merchant_transactions.select {|transaction| transaction.result == 'success'}
+    successful_invoices = successful_transactions.map {|transaction| transaction.invoice}
+    successful_invoice_items = successful_invoices.map {|invoice| invoice.invoice_items}.flatten
+    total_revenue = successful_invoice_items.reduce(0) {|sum, invoice_item| sum + (invoice_item.quantity * invoice_item.unit_price)}
   end
 end

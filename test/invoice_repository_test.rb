@@ -4,7 +4,7 @@ class InvoiceRepositoryTest < Minitest::Test
 	attr_reader :invoice_repository, :sales_engine
 
 	def setup
-		file_path = "./test/support/test_invoices.csv"
+		file_path = "./test/support/invoices.csv"
 		@sales_engine = Minitest::Mock.new
 		repository = Minitest::Mock.new
 		@invoice_repository = InvoiceRepository.new(file_path, sales_engine)
@@ -55,13 +55,13 @@ class InvoiceRepositoryTest < Minitest::Test
 	end	
 
 	def test_finds_by_create_date
-		results = invoice_repository.find_by_created_at("2012-03-10")
+		results = invoice_repository.find_by_created_at(Date.parse("2012-03-10"))
 
 		assert_equal 3, results.id
 	end
 
 	def test_finds_by_update_date
-		results = invoice_repository.find_by_updated_at("2012-03-21")
+		results = invoice_repository.find_by_updated_at(Date.parse("2012-03-21"))
 
 		assert_equal 12, results.id
 	end

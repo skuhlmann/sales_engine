@@ -4,7 +4,7 @@ class MerchantRepositoryTest < Minitest::Test
 	attr_reader :merchant_repository, :sales_engine
 
 	def setup
-		file_path = "./test/support/test_merchants.csv"
+		file_path = "./test/support/merchants.csv"
 		@sales_engine = Minitest::Mock.new
 		repository = Minitest::Mock.new
 		@merchant_repository = MerchantRepository.new(file_path, sales_engine)
@@ -43,27 +43,26 @@ class MerchantRepositoryTest < Minitest::Test
 	end	
 
 	def test_finds_by_create_date
-		results = merchant_repository.find_by_created_at("2012-03-27")
+		results = merchant_repository.find_by_created_at(Date.parse("2012-03-27"))
 
 		assert_equal 1, results.id
 	end
 
 	def test_finds_by_update_date
-		results = merchant_repository.find_by_updated_at("2012-03-27")
+		results = merchant_repository.find_by_updated_at(Date.parse("2012-03-27"))
 
 		assert_equal 1, results.id
 	end
 
 	def test_finds_all_by_merchant_created_date
-		results = merchant_repository.find_all_by_created_at("2012-03-27")
+		results = merchant_repository.find_all_by_created_at(Date.parse("2012-03-27"))
 
 		assert_equal 15, results.count
 		assert_equal "Dicki-Bednar", results[13].name
 	end
 
 	def test_finds_all_by_missing_value_returns_an_empty_array
-		skip
-		assert_empty merchant_repository.find_all_by_id(1000000)
+		results = merchant_repository.find_all_by_id(1000000)
 
 		assert_empty results
 	end
