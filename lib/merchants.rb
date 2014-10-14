@@ -36,5 +36,5 @@ class Merchants
     successful_invoice_items = successful_invoices.map {|invoice| invoice.invoice_items}.flatten
     total_revenue = successful_invoice_items.reduce(0) {|sum, invoice_item| sum + (invoice_item.quantity * invoice_item.unit_price)}
   end
-  
+
 end
