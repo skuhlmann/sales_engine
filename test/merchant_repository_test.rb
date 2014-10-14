@@ -43,19 +43,19 @@ class MerchantRepositoryTest < Minitest::Test
 	end	
 
 	def test_finds_by_create_date
-		results = merchant_repository.find_by_created_at("2012-03-27")
+		results = merchant_repository.find_by_created_at(Date.parse("2012-03-27"))
 
 		assert_equal 1, results.id
 	end
 
 	def test_finds_by_update_date
-		results = merchant_repository.find_by_updated_at("2012-03-27")
+		results = merchant_repository.find_by_updated_at(Date.parse("2012-03-27"))
 
 		assert_equal 1, results.id
 	end
 
 	def test_finds_all_by_merchant_created_date
-		results = merchant_repository.find_all_by_created_at("2012-03-27")
+		results = merchant_repository.find_all_by_created_at(Date.parse("2012-03-27"))
 
 		assert_equal 15, results.count
 		assert_equal "Dicki-Bednar", results[13].name

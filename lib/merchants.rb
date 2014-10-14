@@ -8,8 +8,8 @@ class Merchants
   def initialize(data, repository)
     @id         = data[:id].to_i
     @name       = data[:name]
-    @created_at = data[:created_at].split(" ")[0]
-    @updated_at = data[:created_at].split(" ")[0]
+    @created_at = Date.parse(data[:created_at])
+    @updated_at = Date.parse(data[:created_at])
     @repository = repository
   end
 

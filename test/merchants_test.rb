@@ -27,8 +27,8 @@ class MerchantsTest < Minitest::Test
   end
 
   def test_it_has_meta_data
-    assert_equal "2012-03-27", merchant.created_at
-    assert_equal "2012-03-27", merchant.updated_at
+    assert_equal Date.parse("2012-03-27 14:53:59 UTC"), merchant.created_at
+    assert_equal Date.parse("2012-03-27 14:53:59 UTC"), merchant.updated_at
   end
 
   def test_it_delegates_items_to_repository

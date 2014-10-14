@@ -42,8 +42,8 @@ class InvoiceItemTest < Minitest::Test
 	end
 
 	def test_invoice_item_has_metadata
-		assert_equal "2012-03-27", invoice_item.created_at
-		assert_equal "2012-03-27", invoice_item.updated_at
+		assert_equal Date.parse("2012-03-27 14:54:09 UTC"), invoice_item.created_at
+		assert_equal Date.parse("2012-03-27 14:54:09 UTC"), invoice_item.updated_at
 	end
 
 	def test_delegates_invoice_to_repository

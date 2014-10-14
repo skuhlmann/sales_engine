@@ -55,13 +55,13 @@ class InvoiceRepositoryTest < Minitest::Test
 	end	
 
 	def test_finds_by_create_date
-		results = invoice_repository.find_by_created_at("2012-03-10")
+		results = invoice_repository.find_by_created_at(Date.parse("2012-03-10"))
 
 		assert_equal 3, results.id
 	end
 
 	def test_finds_by_update_date
-		results = invoice_repository.find_by_updated_at("2012-03-21")
+		results = invoice_repository.find_by_updated_at(Date.parse("2012-03-21"))
 
 		assert_equal 12, results.id
 	end
