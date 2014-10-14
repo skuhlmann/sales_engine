@@ -17,6 +17,14 @@ class MerchantRepository
 		merchants.sample
 	end
 
+	def find_by_name(value)
+		merchants.find {|merchant| merchant.name.downcase == value.downcase}
+	end
+
+	def find_all_by_name(value)
+		merchants.find_all {|merchant| merchant.name.downcase == value.downcase}
+	end
+
 	def find_by(attribute, value)
 		merchants.find {|merchant| merchant.send(attribute.to_sym) == value}
 	end
@@ -26,20 +34,10 @@ class MerchantRepository
 	end
 
 	def find_by_id(value); find_by(:id, value) end
-
-	def find_by_name(value)
-		merchants.find {|merchant| merchant.name.downcase == value.downcase}
-	end
-	
 	def find_by_created_at(value); find_by(:created_at, value) end
 	def find_by_updated_at(value); find_by(:updated_at, value) end
 
 	def find_all_by_id(value); find_all_by(:id, value) end
-	
-	def find_all_by_name(value)
-		merchants.find_all {|merchant| merchant.name.downcase == value.downcase}
-	end
-
 	def find_all_by_created_at(value); find_all_by(:created_at, value) end
 	def find_all_by_updated_at(value); find_all_by(:updated_at, value) end
 
