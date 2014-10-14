@@ -72,6 +72,7 @@ class SalesEngine
 		invoice_item_repository.find_all_by_item_id(id)
 	end
 
+
 	def find_merchant_by_item(merchant_id)
 		merchant_repository.find_by_id(merchant_id)
 	end
@@ -90,6 +91,14 @@ class SalesEngine
 
 	def find_merchants_by_customer(id)
 		customer_invoices = find_invoices_by_customer(id)
+	end
+
+	def invoice_has_successful_transaction?(id)
+		transaction_reposoitory.find_all_by_invoice_id(id).any? {|transaction| transaction.result == 'success'}
+	end
+
+	def invoice_item_has_successful_transaction?(invoice_id)
+		transaction_repository.find_all_by_invoice_id(invoice_id).any? {|transaction| transaction.result == 'success'}
 	end
 
 	def find_all_invoice_items_by_quantity(x)
