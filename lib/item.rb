@@ -46,7 +46,11 @@ class Item
 	end
 
 	def total_quantity 
-		invoice_items.reduce(0) {|sum, invoice_item| sum + invoice_item.quantity}
+		invoices = invoice_items.map {|invoice_item| invoice_item.invoice}
+		successful_tranasactions = invoices.select {|invoice| invoice.successful_transactions}
+		successful_invoices = successful_tranasactions.map {|transaction| transaction.invoice}
+		successful_invoice_items = successful_invoices.map {|invoice| invoice.invoice_items}
+		successful_invoice_items.reduce(0) {|sum, invoice_item| sum + invoice_item.quantity}
 	end
 
 end
