@@ -52,6 +52,14 @@ class ItemRepository
     sales_engine.find_invoice_items_by_item(id)
   end
 
+  #most_revenue(x) returns the top x item instances ranked by total revenue generated
+
+  def most_items(x)
+    sales_engine.find_all_invoice_items_by_quantity(x)
+  end
+
+  #most_items(x) returns the top x item instances ranked by total number sold
+
   def inspect
     "#<#{self.ItemRepository} #{@items.size} rows>"
   end

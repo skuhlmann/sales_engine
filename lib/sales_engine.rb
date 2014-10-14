@@ -85,4 +85,14 @@ class SalesEngine
 		customer_invoices.map(&:id)
 	end
 
+	def find_all_invoice_items_by_quantity(x)
+		invoice_items_grouped = invoice_item_repository.all.group_by {|invoice_item| invoice_item.item_id}
+		hash = Hash.new
+		invoice_items_grouped.each do |item_id, invoice_items|
+			hash[item_id] = invoice_items.reduce(0) {|sum, invoice_item| sum + invoice_item.quantity}
+		end
+		most_quantity = hash.sort_by {|item_id, total_quantity| total_quantity}.reverse.take(x)
+		this = most_quantity.map {|element| item_repository.find_by_id(element[0])}
+	end
+
 end
