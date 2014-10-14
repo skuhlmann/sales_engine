@@ -41,4 +41,12 @@ class Item
 		best_day = hash.max_by { |date, total_quantity| total_quantity }[0]
 	end
 
+	def total_revenue
+		invoice_items.reduce(0) {|sum, invoice_item| sum + (invoice_item.quantity * invoice_item.unit_price)}
+	end
+
+	def total_quantity 
+		invoice_items.reduce(0) {|sum, invoice_item| sum + invoice_item.quantity}
+	end
+
 end
