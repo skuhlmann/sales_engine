@@ -23,7 +23,7 @@ class Customer
 		repository.find_transactions_for(id)
 	end
 
-	def success_trans
+	def successful_trans
 		customer_transactions = invoices.map { |invoices| invoices.transactions }.flatten
 		successful_transactions = customer_transactions.select { |transaction| transaction.result == 'success' }
 	end

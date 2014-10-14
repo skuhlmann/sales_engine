@@ -36,4 +36,8 @@ class Merchants
     total_revenue = successful_invoice_items.reduce(0) {|sum, invoice_item| sum + (invoice_item.quantity * invoice_item.unit_price)}
   end
 
+  def favorite_customer
+    
+  end
+
 end
