@@ -23,11 +23,6 @@ class Customer
 		repository.find_transactions_for(id)
 	end
 
-	def success_trans
-		customer_transactions = invoices.map { |invoices| invoices.transactions }.flatten
-		successful_transactions = customer_transactions.select { |transaction| transaction.result == 'success' }
-	end
-
 	def favorite_merchant
 		customer_invoices = invoices.map { |invoices| invoices.merchant }.flatten
 		favorite_merchant = customer_invoices.max_by { |invoices| invoices }
