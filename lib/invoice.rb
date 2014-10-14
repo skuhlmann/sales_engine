@@ -24,6 +24,10 @@ class Invoice
 		repository.find_transactions_for(id)
 	end
 
+	def successful_transactions
+		repository.find_successful_transactions_for(id)
+	end
+
 	def customer
 		repository.find_customer_for(customer_id)
 	end
@@ -38,5 +42,9 @@ class Invoice
 
 	def items
 		repository.find_items_for(id)
+	end
+
+	def successful_invoices
+		repository.find_successfl_transactions_for(id)
 	end
 end

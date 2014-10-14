@@ -43,6 +43,10 @@ class SalesEngine
 		transaction_repository.find_all_by_invoice_id(id)
 	end
 
+	def find_successful_transactions_by_invoice(id)
+		transaction_repository.find_all_by_invoice_id(id).select {|transaction| transaction.result == "success" }
+	end
+
 	def find_customer_by_invoice(customer_id)
 		customer_repository.find_by_id(customer_id)
 	end
