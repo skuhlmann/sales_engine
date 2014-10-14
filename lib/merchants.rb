@@ -21,12 +21,20 @@ class Merchants
     repository.find_invoices_for(id)
   end
 
-  def revenue
-    merchant_invoices = invoices
-    merchant_transactions = merchant_invoices.map {|invoice| invoice.transactions}.flatten
+  def invoices_by_date(date)
+    invoices.select {|invoice| invoice.created_at == date}
+  end
+
+  def revenue(date=nil)
+    if date == nil
+      merchant_transactions = invoices.map {|invoice| invoice.transactions}.flatten
+    else
+      merchant_transactions = invoices_by_date(date).map {|invoice| invoice.transactions}.flatten
+    end
     successful_transactions = merchant_transactions.select {|transaction| transaction.result == 'success'}
     successful_invoices = successful_transactions.map {|transaction| transaction.invoice}
     successful_invoice_items = successful_invoices.map {|invoice| invoice.invoice_items}.flatten
     total_revenue = successful_invoice_items.reduce(0) {|sum, invoice_item| sum + (invoice_item.quantity * invoice_item.unit_price)}
   end
+  
 end
