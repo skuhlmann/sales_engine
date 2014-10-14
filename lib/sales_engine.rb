@@ -82,7 +82,10 @@ class SalesEngine
 
 	def find_transactions_by_customer(id)
 		customer_invoices = find_invoices_by_customer(id)
-		customer_invoices.map(&:id)
+	end
+
+	def find_merchants_by_customer(id)
+		customer_invoices = find_invoices_by_customer(id)
 	end
 
 end

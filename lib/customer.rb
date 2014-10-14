@@ -10,8 +10,8 @@ class Customer
 		@id         = data[:id].to_i
 		@first_name = data[:first_name]
 		@last_name  = data[:last_name]
-		@created_at = data[:created_at].split(" ")[0]
-		@updated_at = data[:updated_at].split(" ")[0]
+		@created_at = data[:created_at]
+		@updated_at = data[:updated_at]
 		@repository = repository
 	end
 
@@ -21,6 +21,10 @@ class Customer
 
 	def transactions
 		repository.find_transactions_for(id)
+	end
+
+	def favorite_merchant
+		repository.find_merchants_for(id)
 	end
 
 end

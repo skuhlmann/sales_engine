@@ -32,8 +32,8 @@ class CustomerTest < Minitest::Test
 	end
 
 	def test_customer_has_metadata
-		assert_equal "2012-03-27", customer.created_at
-		assert_equal "2012-03-27", customer.updated_at
+		assert_equal "2012-03-27 14:54:09 UTC", customer.created_at
+		assert_equal "2012-03-27 14:54:09 UTC", customer.updated_at
 	end
 
 	def test_delegates_invoices_to_repository
@@ -50,5 +50,12 @@ class CustomerTest < Minitest::Test
 		repository.verify
 	end
 
+	def test_a_customer_has_merchants
+		merchant1 = Merchants.new({:id => 1}, nil)
+		merchant2 = Merchants.new({:id => 2}, nil)
+		repository.expect(:find_merchants_for, [merchant1, merchant2], [1])
+		assert_equal [1,2], customer.merchants.map(&:id)
+		repository.verify
+	end
 
 end
