@@ -27,11 +27,10 @@ class Merchants
 
   def revenue(date=nil)
     if date == nil
-      merchant_transactions = invoices.map {|invoice| invoice.successful_transactions}.flatten
+      successful_invoices = invoices.select {|invoice| invoice.is_successful?}
     else
-      merchant_transactions = invoices_by_date(date).map {|invoice| invoice.successful_transactions}.flatten
-    end
-    successful_invoices = merchant_transactions.map {|transaction| transaction.invoice}
+      successful_invoices = invoices_by_date(date).select {|invoice| invoice.is_successful?} 
+    end   
     successful_invoice_items = successful_invoices.map {|invoice| invoice.invoice_items}.flatten
     total_revenue = successful_invoice_items.reduce(0) {|sum, invoice_item| sum + (invoice_item.quantity * invoice_item.unit_price)}
   end
