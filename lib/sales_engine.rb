@@ -86,11 +86,12 @@ class SalesEngine
 	end
 
 	def find_transactions_by_customer(id)
-		customer_invoices = find_invoices_by_customer(id)
+		find_invoices_by_customer(id).flat_map {|invoice| find_transactions_by_invoice(invoice.id)}
 	end
 
 	def find_merchants_by_customer(id)
-		customer_invoices = find_invoices_by_customer(id)
+		merchant_invoices = find_invoices_by_customer(id)
+		merchant_invoices.flat_map {|invoice| find_transactions_by_invoice(invoice.id)}
 	end
 
 	def invoice_has_successful_transaction?(id)
@@ -101,15 +102,8 @@ class SalesEngine
 		transaction_repository.find_all_by_invoice_id(invoice_id).any? {|transaction| transaction.result == 'success'}
 	end
 
-
-	# def find_all_invoice_items_by_quantity(x)
-	# 	invoice_items_grouped = invoice_item_repository.all.group_by {|invoice_item| invoice_item.item_id}
-	# 	hash = Hash.new
-	# 	invoice_items_grouped.each do |item_id, invoice_items|
-	# 		hash[item_id] = invoice_items.reduce(0) {|sum, invoice_item| sum + invoice_item.quantity}
-	# 	end
-	# 	most_quantity = hash.sort_by {|item_id, total_quantity| total_quantity}.reverse.take(x)
-	# 	this = most_quantity.map {|element| item_repository.find_by_id(element[0])}
-	# end
+	def find_customers_with_pending_invoices(customer_id)
+		customer_repository.find_with_pending_invoices(customer_id)
+	end
 
 end
