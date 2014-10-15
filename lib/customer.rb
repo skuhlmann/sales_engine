@@ -10,17 +10,17 @@ class Customer
 		@id         = data[:id].to_i
 		@first_name = data[:first_name]
 		@last_name  = data[:last_name]
-		@created_at = data[:created_at]
-		@updated_at = data[:updated_at]
+		@created_at = Date.parse(data[:created_at])
+		@updated_at = Date.parse(data[:updated_at])
 		@repository = repository
 	end
 
 	def invoices
-		repository.find_invoices_for(id)
+		@invoices ||= repository.find_invoices_for(id)
 	end
 
 	def transactions
-		repository.find_transactions_for(id)
+		@transactions ||= repository.find_transactions_for(id)
 	end
 
 	def successful_trans

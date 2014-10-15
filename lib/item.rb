@@ -25,11 +25,11 @@ class Item
 	end
 
 	def invoice_items
-		repository.find_invoice_items_for(id)
+		@invoice_items ||= repository.find_invoice_items_for(id)
 	end
 
 	def merchant
-		repository.find_merchant_for(merchant_id)
+		@merchant ||= repository.find_merchant_for(merchant_id)
 	end
 
 	def best_day
