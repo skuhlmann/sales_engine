@@ -69,10 +69,6 @@ class CustomerRepository
 		sales_engine.find_merchants_by_customer(id)
 	end
 
-	def find_with_pending_invoices(customer_id)
-		customers.select {|customer| customer.has_unpaid_invoices?}
-	end
-
   def inspect
     "#<#{self.class} #{@customers.size} rows>"
   end

@@ -22,5 +22,4 @@ class Transactions
   def invoice
     @invoices ||= repository.find_invoice_for(invoice_id)
   end
-
 end

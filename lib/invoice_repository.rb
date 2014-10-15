@@ -63,8 +63,7 @@ class InvoiceRepository
 		sales_engine.find_invoice_items_by_invoice(id)
 	end
 
-	def has_successful_transaction?(id)
-		sales_engine.invoice_has_successful_transaction?(id)
+	def create(hash)
 	end
 
 	def create(attributes)

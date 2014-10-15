@@ -2,7 +2,6 @@ require 'bigdecimal'
 require 'bigdecimal/util'
 require 'time'
 
-
 class Item
 	attr_reader :id,
 							:name,
@@ -45,8 +44,11 @@ class Item
 		invoice_items.reduce(0) {|sum, invoice_item| sum + (invoice_item.quantity * invoice_item.unit_price)}
 	end
 
+	def successful_invoice_items
+		invoice_items.select {|invoice_item| invoice_item.is_successful?}
+	end
+
 	def total_quantity 
-		successful_invoice_items = invoice_items.select {|invoice_item| invoice_item.is_successful?}
 		successful_invoice_items.reduce(0) {|sum, invoice_item| sum + invoice_item.quantity}
 	end
 
