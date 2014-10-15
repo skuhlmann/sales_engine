@@ -20,11 +20,11 @@ class InvoiceItem
 	end
 
 	def invoice
-		repository.find_invoice_for(invoice_id)
+		@invoice ||= repository.find_invoice_for(invoice_id)
 	end
 
 	def item
-		repository.find_item_for(item_id)
+		@item ||= repository.find_item_for(item_id)
 	end
 
 	def is_successful?

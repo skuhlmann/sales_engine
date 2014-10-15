@@ -21,27 +21,27 @@ class Invoice
 	end
 
 	def transactions
-		repository.find_transactions_for(id)
+		@transactions ||= repository.find_transactions_for(id)
 	end
 
 	def successful_transactions
-		repository.find_successful_transactions_for(id)
+		@successful_transactions ||= repository.find_successful_transactions_for(id)
 	end
 
 	def customer
-		repository.find_customer_for(customer_id)
+		@customer ||= repository.find_customer_for(customer_id)
 	end
 
 	def merchant
-		repository.find_merchant_for(merchant_id)
+		@merchant ||= repository.find_merchant_for(merchant_id)
 	end
 
 	def invoice_items
-		repository.find_invoice_items_for(id)
+		@invoice_items ||= repository.find_invoice_items_for(id)
 	end
 
 	def items
-		repository.find_items_for(id)
+		@items ||= repository.find_items_for(id)
 	end
 
 	def is_successful?
