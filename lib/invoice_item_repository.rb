@@ -52,6 +52,20 @@ class InvoiceItemRepository
 	def has_successful_transaction?(invoice_id)
 		sales_engine.invoice_item_has_successful_transaction?(invoice_id)
 	end
+
+	def create_invoice_items(invoice_id, item, quantity)
+		data = { 				
+						id: "#{invoice_items.last.id + 1}",
+						item_id: item.id,
+						invoice_id: invoice_id,
+						quantity: quantity,
+						unit_price: item.unit_price,
+						created_at: "#{Date.new}",
+						updated_at: "#{Date.new}"
+					 }
+
+		@invoice_items << InvoiceItem.new(data, self)
+	end
 	
   def inspect
     "#<#{self.class} #{@invoice_items.size} rows>"

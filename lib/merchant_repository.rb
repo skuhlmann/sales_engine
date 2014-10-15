@@ -53,17 +53,17 @@ class MerchantRepository
 		sales_engine.find_customers_with_pending_invoices(customer_id)
 	end
 
-	def most_items(x)
-		merchants.sort_by {|merchant| merchant.items_sold}.reverse.take(x)
-	end
+	# def most_items(x)
+	# 	merchants.sort_by {|merchant| merchant.items_sold}.reverse.take(x)
+	# end
 
-	def revenue(date)
-		revenues = merchants.map {|merchant| merchant.revenue(date)}.reduce(:+)
-	end
+	# def revenue(date)
+	# 	revenues = merchants.map {|merchant| merchant.revenue(date)}.reduce(:+)
+	# end
 
-	def most_revenue(x)
-		merchants.sort_by {|merchant| merchant.revenue}.reverse.take(x)
-	end
+	# def most_revenue(x)
+	# 	merchants.sort_by {|merchant| merchant.revenue}.reverse.take(x)
+	# end
 
   def inspect
     "#<#{self.class} #{@merchants.size} rows>"

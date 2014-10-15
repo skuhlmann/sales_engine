@@ -41,7 +41,7 @@ class Invoice
 	end
 
 	def items
-		@items ||= repository.find_items_for(id)
+		@items ||= repository.find_items_for(id)  
 	end
 
 	def is_successful?

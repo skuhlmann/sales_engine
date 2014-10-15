@@ -10,6 +10,27 @@ class InvoiceRepositoryTest < Minitest::Test
 		@invoice_repository = InvoiceRepository.new(file_path, sales_engine)
 	end
 
+	def test_it_creates_a_new_invoice_object
+		customer_repository = CustomerRepository.new("./test/support/invoices.csv", sales_engine)
+		merchant_repository = MerchantRepository.new("./test/support/merchants.csv", sales_engine)
+		item_repository     = ItemRepository.new("./test/support/items.csv", sales_engine)
+		customer 						= customer_repository.find_by_id(7) 
+		merchant 						= merchant_repository.find_by_id(5)
+		item1 							= item_repository.random
+		item2 							= item_repository.random
+		item3								= item_repository.random
+
+		invoice = invoice_repository.create(customer: customer, merchant: merchant, status: "shipped", items: [item1, item2, item3])
+
+		assert_equal 15, invoice.id
+		assert_equal customer.id, invoice.customer_id
+		assert_equal merchant.id, invoice.merchant_id
+		assert_equal "shipped", invoice.status
+		# assert_equal "shipped", invoice_repository.invoice.created_at
+		# assert_equal "shipped", invoice_repository.invoice.updated_at
+	end
+
+
 	def test_has_an_invoice_array
 		assert_equal 14, invoice_repository.invoices.count
 	end
