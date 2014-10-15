@@ -16,11 +16,11 @@ class Customer
 	end
 
 	def invoices
-		@invoices ||= repository.find_invoices_for(id)
+		repository.find_invoices_for(id)
 	end
 
 	def transactions
-		@transactions ||= repository.find_transactions_for(id)
+		@transaction ||= repository.find_transactions_for(id)
 	end
 
 	def successful_trans
@@ -31,6 +31,10 @@ class Customer
 	def favorite_merchant
 		customer_invoices = invoices.map { |invoices| invoices.merchant }.flatten
 		favorite_merchant = customer_invoices.max_by { |invoices| invoices }
+	end
+
+	def has_unpaid_invoices?
+		invoices.none? {|invoice| invoice.is_successful?}
 	end
 
 end

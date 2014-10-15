@@ -46,6 +46,11 @@ class Merchants
   end
 
   def favorite_customer
-    
+    merchant_customers = invoices.map { |invoices| invoices.customer }.flatten
+    favorite_customer = merchant_customers.uniq.max_by { |customer| merchant_customers.count(customer) }
+  end
+
+  def customers_with_pending_invoices
+    invoices.reject {|invoice| invoice.is_successful?}.map {|invoice| invoice.customer}
   end
 end

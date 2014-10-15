@@ -45,7 +45,8 @@ class Invoice
 	end
 
 	def is_successful?
-		repository.has_successful_transaction?(id)
+		transactions.any? {|transaction| transaction.result == 'success'}
+		#repository.has_successful_transaction?(id)
 	end
 
 end
