@@ -52,13 +52,13 @@ class ItemRepository
     sales_engine.find_invoice_items_by_item(id)
   end
 
-  def most_revenue(x)
-    items.sort_by {|item| item.total_revenue}.reverse.take(x)
-  end
+  # def most_revenue(x)
+  #   items.sort_by {|item| item.total_revenue}.reverse.take(x)
+  # end
 
-  def most_items(x)
-    items.sort_by {|item| item.total_quantity}.reverse.take(x)
-  end 
+  # def most_items(x)
+  #   items.sort_by {|item| item.total_quantity}.reverse.take(x)
+  # end 
 
   def inspect
     "#<#{self.ItemRepository} #{@items.size} rows>"

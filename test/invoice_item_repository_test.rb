@@ -10,6 +10,10 @@ class InvoiceItemRepositoryTest < Minitest::Test
 		@invoice_item_repository = InvoiceItemRepository.new(file_path, sales_engine)
 	end
 
+	def test_it_creates_new_invoice_item_objects
+
+	end
+
 	def test_has_an_invoice_items_array
 		assert_equal 14, invoice_item_repository.invoice_items.count
 	end
