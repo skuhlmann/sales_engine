@@ -40,14 +40,17 @@ class Merchants
     total_revenue = successful_invoice_items.reduce(0) {|sum, invoice_item| sum + (invoice_item.quantity * invoice_item.unit_price)}
   end
 
+  def successful_invoice_items
+    invoice_items.select {|invoice_item| invoice_item.is_successful?}
+  end
+
   def items_sold
-    successful_invoice_items = invoice_items.select {|invoice_item| invoice_item.is_successful?}
     successful_invoice_items.reduce(0) {|sum, invoice_item| sum + invoice_item.quantity}
   end
 
   def favorite_customer
-    merchant_customers = invoices.map { |invoices| invoices.customer }.flatten
-    favorite_customer = merchant_customers.uniq.max_by { |customer| merchant_customers.count(customer) }
+    merchant_customers = invoices.flat_map { |invoices| invoices.customer }
+    favorite_customer = merchant_customers.uniq.max_by { |customer| merchant_customers.count(customer)}
   end
 
   def customers_with_pending_invoices

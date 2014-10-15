@@ -101,9 +101,4 @@ class SalesEngine
 	def invoice_item_has_successful_transaction?(invoice_id)
 		transaction_repository.find_all_by_invoice_id(invoice_id).any? {|transaction| transaction.result == 'success'}
 	end
-
-	def find_customers_with_pending_invoices(customer_id)
-		customer_repository.find_with_pending_invoices(customer_id)
-	end
-
 end
