@@ -45,6 +45,23 @@ class TransactionsRepository
     sales_engine.find_invoice_by_transaction(invoice_id)
   end
 
+  def create_transactions(attributes, id)
+    data = {
+            id: "#{transactions.last.id + 1}",
+            created_at: "#{Date.new}",
+            updated_at: "#{Date.new}",
+            invoice_id: id,
+            credit_card_number: attributes[:credit_card_number],
+            credit_card_expiration_date: attributes[:credit_card_expiration_date],
+            result: attributes[:result]
+           }
+
+    @transactions << Transactions.new(data, self)
+
+  end
+
+
+
   def inspect
     "#<#{self.class} #{@transactions.size} rows>"
   end

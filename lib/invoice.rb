@@ -24,6 +24,10 @@ class Invoice
 		@transactions ||= repository.find_transactions_for(id)
 	end
 
+	def refresh_transactions
+		@transactions = repository.find_transactions_for(id)
+	end
+
 	def successful_transactions
 		@successful_transactions ||= repository.find_successful_transactions_for(id)
 	end
@@ -41,12 +45,17 @@ class Invoice
 	end
 
 	def items
-		@items ||= repository.find_items_for(id)  
+		@items ||= repository.find_items_for(id)
 	end
 
 	def is_successful?
 		transactions.any? {|transaction| transaction.result == 'success'}
 		#repository.has_successful_transaction?(id)
+	end
+
+	def charge(attributes)
+		repository.create_transaction(attributes, id)
+		refresh_transactions
 	end
 
 end

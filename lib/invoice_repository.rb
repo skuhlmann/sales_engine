@@ -63,11 +63,12 @@ class InvoiceRepository
 		sales_engine.find_invoice_items_by_invoice(id)
 	end
 
-	def create(hash)
+	def create_transaction(attributes, id)
+		sales_engine.transaction_repository.create_transactions(attributes, id)
 	end
 
 	def create(attributes)
-		data = { 
+		data = {
 						id: "#{invoices.last.id + 1}",
 						customer_id: attributes[:customer].id,
 						merchant_id: attributes[:merchant].id,
@@ -77,6 +78,7 @@ class InvoiceRepository
 					 }
 
 		invoice = Invoice.new(data, self)
+		@invoices << invoice
 
 		invoice_id = data[:id]
 		unique_items = attributes[:items].uniq
