@@ -55,12 +55,8 @@ class TransactionsRepository
             credit_card_expiration_date: attributes[:credit_card_expiration_date],
             result: attributes[:result]
            }
-
     @transactions << Transactions.new(data, self)
-
   end
-
-
 
   def inspect
     "#<#{self.class} #{@transactions.size} rows>"

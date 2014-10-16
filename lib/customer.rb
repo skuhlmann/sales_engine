@@ -24,13 +24,15 @@ class Customer
 	end
 
 	def successful_trans
-		customer_transactions = invoices.flat_map { |invoices| invoices.transactions }
-		successful_transactions = customer_transactions.select { |transaction| transaction.result == 'success' }
+		invoices.flat_map(&:transactions).select { |transaction| transaction.result == 'success' }
+		# customer_transactions = invoices.flat_map { |invoices| invoices.transactions }
+		# successful_transactions = customer_transactions.select { |transaction| transaction.result == 'success' }
 	end
 
 	def favorite_merchant
-		customer_invoices = invoices.flat_map { |invoices| invoices.merchant }
-		favorite_merchant = customer_invoices.max_by { |invoices| invoices }
+		invoices.flat_map(&:merchant).max_by { |invoices| invoices }
+		# customer_invoices = invoices.flat_map { |invoices| invoices.merchant }
+		# favorite_merchant = customer_invoices.max_by { |invoices| invoices }
 	end
 
 end

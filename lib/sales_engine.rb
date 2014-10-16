@@ -43,10 +43,6 @@ class SalesEngine
 		transaction_repository.find_all_by_invoice_id(id)
 	end
 
-	def find_successful_transactions_by_invoice(id)
-		transaction_repository.find_all_by_invoice_id(id).select {|transaction| transaction.result == "success" }
-	end
-
 	def find_customer_by_invoice(customer_id)
 		customer_repository.find_by_id(customer_id)
 	end
@@ -60,8 +56,7 @@ class SalesEngine
 	end
 
 	def find_items_by_invoice(id)
-		invoice_items = find_invoice_items_by_invoice(id)
-		invoice_items.collect {|invoice_item| find_item_by_invoice_item(invoice_item.item_id)}
+		find_invoice_items_by_invoice(id).collect {|invoice_item| find_item_by_invoice_item(invoice_item.item_id)}
 	end
 
 	def find_invoice_by_transaction(invoice_id)
@@ -71,7 +66,6 @@ class SalesEngine
 	def find_invoice_items_by_item(id)
 		invoice_item_repository.find_all_by_item_id(id)
 	end
-
 
 	def find_merchant_by_item(merchant_id)
 		merchant_repository.find_by_id(merchant_id)
@@ -90,12 +84,7 @@ class SalesEngine
 	end
 
 	def find_merchants_by_customer(id)
-		merchant_invoices = find_invoices_by_customer(id)
-		merchant_invoices.flat_map {|invoice| find_transactions_by_invoice(invoice.id)}
-	end
-
-	def invoice_has_successful_transaction?(id)
-		transaction_repository.find_all_by_invoice_id(id).any? {|transaction| transaction.result == 'success'}
+		find_invoices_by_customer(id).flat_map {|invoice| find_transactions_by_invoice(invoice.id)}
 	end
 
 	def invoice_item_has_successful_transaction?(invoice_id)

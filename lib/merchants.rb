@@ -23,7 +23,6 @@ class Merchants
 
   def invoice_items
     @invoice_items ||= invoices.flat_map(&:invoice_items)
-    #invoices.flat_map {|invoice| invoice.invoice_items}
   end
 
   def invoices_by_date(date)
@@ -32,16 +31,15 @@ class Merchants
 
   def revenue(date=nil)
     if date == nil
-      successful_invoices = invoices.select {|invoice| invoice.is_successful?}
+      revenue_invoice_items = invoices.select(&:is_successful?).flat_map(&:invoice_items)
     else
-      successful_invoices = invoices_by_date(date).select {|invoice| invoice.is_successful?} 
+      revenue_invoice_items = invoices_by_date(date).select(&:is_successful?).flat_map(&:invoice_items)
     end   
-    successful_invoice_items = successful_invoices.flat_map {|invoice| invoice.invoice_items}
-    total_revenue = successful_invoice_items.reduce(0) {|sum, invoice_item| sum + (invoice_item.quantity * invoice_item.unit_price)}
+    total_revenue = revenue_invoice_items.reduce(0) {|sum, invoice_item| sum + (invoice_item.quantity * invoice_item.unit_price)}
   end
 
   def successful_invoice_items
-    invoice_items.select {|invoice_item| invoice_item.is_successful?}
+    invoice_items.select(&:is_successful?)
   end
 
   def items_sold
@@ -49,7 +47,7 @@ class Merchants
   end
 
   def favorite_customer
-    merchant_customers = invoices.flat_map { |invoices| invoices.customer }
+    merchant_customers = invoices.flat_map(&:customer)
     favorite_customer = merchant_customers.uniq.max_by { |customer| merchant_customers.count(customer)}
   end
 

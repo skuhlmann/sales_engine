@@ -63,7 +63,6 @@ class InvoiceItemRepository
 						created_at: "#{Date.new}",
 						updated_at: "#{Date.new}"
 					 }
-
 		@invoice_items << InvoiceItem.new(data, self)
 	end
 	
