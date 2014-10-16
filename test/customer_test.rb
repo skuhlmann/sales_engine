@@ -41,21 +41,4 @@ class CustomerTest < Minitest::Test
 		customer.invoices
 		repository.verify
 	end
-
-	def test_customer_has_transactions
-		transaction1 = Transactions.new({:id => 1}, nil)
-		transaction2 = Transactions.new({:id => 2}, nil)
-		repository.expect(:find_transactions_for, [transaction1, transaction2], [1])
-		assert_equal [1,2], customer.transactions.map(&:id)
-		repository.verify
-	end
-
-	def test_a_customer_has_merchants
-		merchant1 = Merchants.new({:id => 1}, nil)
-		merchant2 = Merchants.new({:id => 2}, nil)
-		repository.expect(:find_merchants_for, [merchant1, merchant2], [1])
-		assert_equal [1,2], customer.merchants.map(&:id)
-		repository.verify
-	end
-
 end

@@ -31,6 +31,18 @@ class Item
 		@merchant ||= repository.find_merchant_for(merchant_id)
 	end
 
+	def total_revenue
+		invoice_items.reduce(0) {|sum, invoice_item| sum + (invoice_item.quantity * invoice_item.unit_price)}
+	end
+
+	def successful_invoice_items
+		invoice_items.select(&:is_successful?)
+	end
+
+	def total_quantity 
+		successful_invoice_items.reduce(0) {|sum, invoice_item| sum + invoice_item.quantity}
+	end
+
 	def best_day
 		invoices = invoice_items.group_by {|invoice_item| invoice_item.invoice.created_at}
 		hash = Hash.new
@@ -38,18 +50,6 @@ class Item
 			hash[date] = invoice_items.reduce(0) {|sum, invoice_item| sum + invoice_item.quantity}
 		end
 		best_day = hash.max_by { |date, total_quantity| total_quantity }[0]
-	end
-
-	def total_revenue
-		invoice_items.reduce(0) {|sum, invoice_item| sum + (invoice_item.quantity * invoice_item.unit_price)}
-	end
-
-	def successful_invoice_items
-		invoice_items.select {|invoice_item| invoice_item.is_successful?}
-	end
-
-	def total_quantity 
-		successful_invoice_items.reduce(0) {|sum, invoice_item| sum + invoice_item.quantity}
 	end
 
 end

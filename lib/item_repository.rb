@@ -53,11 +53,11 @@ class ItemRepository
   end
 
   def most_revenue(x)
-    items.sort_by {|item| item.total_revenue}.reverse.take(x)
+    items.sort_by(&:total_revenue).reverse.take(x)
   end
 
   def most_items(x)
-    items.sort_by {|item| item.total_quantity}.reverse.take(x)
+    items.sort_by(&:total_quantity).reverse.take(x)
   end
 
   def inspect

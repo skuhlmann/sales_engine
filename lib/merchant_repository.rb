@@ -17,14 +17,6 @@ class MerchantRepository
 		merchants.sample
 	end
 
-	def find_by_name(value)
-		merchants.find {|merchant| merchant.name.downcase == value.downcase}
-	end
-
-	def find_all_by_name(value)
-		merchants.find_all {|merchant| merchant.name.downcase == value.downcase}
-	end
-
 	def find_by(attribute, value)
 		merchants.find {|merchant| merchant.send(attribute.to_sym) == value}
 	end
@@ -41,6 +33,14 @@ class MerchantRepository
 	def find_all_by_created_at(value); find_all_by(:created_at, value) end
 	def find_all_by_updated_at(value); find_all_by(:updated_at, value) end
 
+	def find_by_name(value)
+		merchants.find {|merchant| merchant.name.downcase == value.downcase}
+	end
+
+	def find_all_by_name(value)
+		merchants.find_all {|merchant| merchant.name.downcase == value.downcase}
+	end
+
 	def find_items_for(id)
 		sales_engine.find_items_by_merchant(id)
 	end
@@ -54,7 +54,7 @@ class MerchantRepository
 	end
 
 	def most_items(x)
-		merchants.sort_by {|merchant| merchant.items_sold}.reverse.take(x)
+		merchants.sort_by(&:items_sold).reverse.take(x)
 	end
 
 	def revenue(date)
@@ -62,7 +62,7 @@ class MerchantRepository
 	end
 
 	def most_revenue(x)
-		merchants.sort_by {|merchant| merchant.revenue}.reverse.take(x)
+		merchants.sort_by(&:revenue).reverse.take(x)
 	end
 
   def inspect

@@ -43,10 +43,6 @@ class InvoiceRepository
 		sales_engine.find_transactions_by_invoice(id)
 	end
 
-	def find_successful_transactions_for(id)
-		sales_engine.find_successful_transactions_by_invoice(id)
-	end
-
 	def find_items_for(id)
 		sales_engine.find_items_by_invoice(id)
 	end
@@ -89,7 +85,6 @@ class InvoiceRepository
 		end
 		invoice
 	end
-
 
 	def inspect
     "#<#{self.class} #{@invoices.size} rows>"
